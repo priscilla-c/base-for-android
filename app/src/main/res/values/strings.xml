@@ -1,3 +1,4 @@
 <resources>
+    <string name="initializer">launch.Initializer</string>
     <string name="app_name">JieTungCheung</string>
 </resources>

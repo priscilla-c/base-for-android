@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jie.tungcheung">
     <!-- 网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,7 +9,11 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 相机 -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <application
+        android:name=".base.MyApplication"
         android:preserveLegacyExternalStorage="true"
         android:requestLegacyExternalStorage="true"
         android:screenOrientation="portrait"
@@ -21,7 +26,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JieTungCheung">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.view.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +36,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:name="com.jie.tungcheung.utils.log.AppProvider"
+            android:authorities="${applicationId}.AppProvider"
+            android:exported="false"
+            android:multiprocess="true"
+            tools:node="merge">
+            <meta-data
+                android:name="com.bailingkeji.app.factorythroughtrain.utils.showmethe.kcore.base.BaseInitializer"
+                android:value="@string/initializer" />
+        </provider>
+        //文件的Provide
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            android:multiprocess="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>
