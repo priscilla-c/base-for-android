@@ -121,41 +121,6 @@ abstract class BaseActivity<V : ViewBinding, VM : AndroidViewModel> : AppCompatA
     }
 
 
-    /**
-     * startActivity，加入切换动画
-     */
-    inline fun <reified T> startActivity(bundle: Bundle? = null, transition: Boolean = false) {
-        val intent = Intent(this, T::class.java)
-        if (bundle != null) {
-            intent.putExtras(bundle)
-        }
-        startActivity(
-            intent, if (transition) {
-                ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
-            } else {
-                null
-            }
-        )
-    }
-
-
-    inline fun <reified T> startActivityWithPair(
-        bundle: Bundle? = null,
-        vararg pair: android.util.Pair<View, String>,
-    ) {
-        val intent = Intent(this, T::class.java)
-        if (bundle != null) {
-            intent.putExtras(bundle)
-        }
-        if (pair.isNotEmpty()) {
-            val transitionActivityOptions =
-                ActivityOptions.makeSceneTransitionAnimation(this, *pair)
-            startActivity(intent, transitionActivityOptions.toBundle())
-        } else {
-            startActivity(intent)
-        }
-    }
-
 
     override fun onDestroy() {
         AppManager.get().removeActivity(this::class.java.name)

@@ -36,6 +36,7 @@ Created by Priscilla Cheung 2021年12月15日17:00:29.
 | 工具类名称 | 对应功能 |  
 | --- | --- |
 | extra | 主要工具类 |
+| Simple | View扩展方法 |
 | ApiService | API接口 |
 | Process | 协程(线程调度) |
 | scope | Retrofit绑定ApiService |
